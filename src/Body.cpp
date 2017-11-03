@@ -15,6 +15,7 @@ CBody::CBody(float x, float y)
 	iMass = 1;
 	staticFriction = 0.2f;
 	dynamicFriction = 0.1f;
+	destroy = false;
 }
 
 
@@ -68,4 +69,14 @@ void CBody::applyForce(const ofVec2f& f)
 void CBody::applyImpulse(const ofVec2f& impulse)
 {
 	velocity += impulse;
+}
+
+void CBody::setType(ActorType t)
+{
+	type = t;
+}
+
+CBody::ActorType CBody::getType()
+{
+	return type;
 }

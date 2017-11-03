@@ -66,6 +66,11 @@ void World::draw()
 
 }
 
+void World::addBody(CBody * body)
+{
+	bodies.push_back(body);
+}
+
 void World::addCircle(float x, float y, float radius)
 {
 	Circle *c = new Circle(radius);
@@ -85,7 +90,7 @@ void World::addRectangle(float x, float y, float w, float h)
 
 void World::addFloor()
 {
-	Shape * shape = new REKT(700,20);
+	Shape * shape = new REKT(1024,20);
 	CBody * body = new CBody(ofGetWidth() / 2, 530);
 	body->iMass = 0;
 	body->setShape(shape);

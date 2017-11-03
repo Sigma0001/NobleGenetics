@@ -23,6 +23,9 @@ public:
 	void addFloor();
 	void addCircle(float x, float y, float radius);
 	void addRectangle(float x, float y, float w, float h);
+	void addBody(CBody *body);
 
 	void addPlayer(float mX, float mY);
+
+
 };
