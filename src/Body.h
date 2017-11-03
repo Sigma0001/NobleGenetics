@@ -5,6 +5,15 @@ class Shape;
 class CBody
 {
 public:
+
+	enum ActorType
+	{
+		PLAYER
+
+	};
+
+	ActorType type;
+
 	ofVec2f velocity;
 	ofVec2f acceleration;
 	ofVec2f   position;
@@ -21,8 +30,17 @@ public:
 	void setShape(Shape *shape);
 	//void boundsCollision();
 
+	bool destroy;
+
+	
 	void applyForce(const ofVec2f& f);
 	void applyImpulse(const ofVec2f& impulse);
+
+	void setType(ActorType t);
+	ActorType getType();
+
+
+
 
 };
 

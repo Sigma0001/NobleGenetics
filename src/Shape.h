@@ -12,6 +12,9 @@ public:
 		REKT
 	};
 
+	float radius;
+	float width;
+	float height;
 	CBody *body;
 	//Otra promesa de que habra un body
 	virtual void draw() = 0;

@@ -7,11 +7,14 @@ void ofApp::setup(){
 	world = World::getInstance();
 	world->addFloor();
 
+
+	playerPos.set(500,500);
 	//world->addRectangle(PlayerPosX, PlayerPosY, 20, 20);
 
 	ofAddListener(world->onCollide, this,&ofApp::onCollision);
 
 	
+	addPlayer();
 
 }
 
@@ -25,9 +28,15 @@ void ofApp::update(){
 		world->update();
 		accumulator -= DT;
 	}	
-
-	PlayerPosX = mouseX + PlayerPosX;
-	PlayerPosY = mouseY + PlayerPosY;
+	/*
+	if (MainPlayer->body->position.x )
+	{
+		setPlayerPos();
+	}
+	*/
+	playerPos.set(mouseX, mouseY);
+	//MainPlayer->body->position = playerPos;
+	setPlayerPos();
 //	world->addRectangle(PlayerPosX, PlayerPosY, 20, 20);
 	
 }
@@ -37,8 +46,13 @@ void ofApp::draw(){
 	world->draw();
 	ofDrawBitmapString(ofToString(ofGetFrameRate()),20, 20);
 
-	//world->addPlayer(mouseX, mouseY);
+	
+//	world->addPlayer(PlayerPosX, PlayerPosY);
+	
+	//ofDrawCircle(mouseX, mouseY, 20);
 }
+
+
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
@@ -116,3 +130,31 @@ void ofApp::onCollision(Contact &c)
 {
 	//cout << "Colision" << endl;
 }
+
+void ofApp::addActor(Actor *act)
+{
+	actors.push_back(act);
+	world->addBody(act->body);
+	//CBody *body = new CBody(50, 10);
+	//Shape *shape = new Circle(40);
+	//body->setShape(shape);
+	//actor.body = body;
+	//actor.setImage(&img);
+	//world->addBody(body);
+}
+
+void ofApp::addPlayer()
+{
+	Player *player = new Player();
+	player->init(500, 400, 20);
+	addActor(player);
+
+	mainplayer.push_back(player);
+	MainPlayer = mainplayer.back();
+}
+
+void ofApp::setPlayerPos()
+{
+	MainPlayer->body->position = playerPos;
+}
+

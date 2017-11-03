@@ -2,6 +2,8 @@
 
 #include "ofMain.h"
 #include "World.h"
+#include "Player.h"
+#include "Actor.h"
 
 #define DT 1.0f/60.0f
 
@@ -14,15 +16,24 @@ class ofApp : public ofBaseApp{
 		void draw();
 		
 		//***********
-		float PlayerPosX = 700;
-		float PlayerPosY = 100;
+		ofVec2f playerPos;
 
 
+		void addPlayer();
 		//***********
+
+		Actor actor;
 
 		double accumulator;
 
 		void onCollision(Contact &c);
+		void addActor(Actor * act);
+
+		vector<Actor*> actors;
+		vector < Player*> mainplayer;
+		Player * MainPlayer;
+
+		void setPlayerPos();
 
 		void keyPressed(int key);
 		void keyReleased(int key);
